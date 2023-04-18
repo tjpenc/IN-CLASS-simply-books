@@ -11,8 +11,6 @@ export default function Authors() {
     getAllAuthors();
   }, []);
 
-  console.warn(authors);
-
   return (
     <>
       {authors.map((author) => <AuthorCard authorData={author} />)}

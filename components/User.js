@@ -1,13 +1,15 @@
+// import PropTypes from 'prop-types';
 import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
 
 export default function User({ user }) {
   return (
     <>
       <div style={{ color: 'white' }}>
-        <h1>{user.photoURL}</h1>
-        <h1>{user.displayName}</h1>
-        <h1>{user.email}</h1>
-        <h1>{user.metadata.lastSignInTime}</h1>
+        <Card.Img variant="top" src={user.photoURL} alt="Profile" style={{ height: '200px', width: '200px', margin: '0 0 0 350px' }} />
+        <h6>{user.email}</h6>
+        <h6>{user.displayName}</h6>
+        <h6>{user.metadata.lastSignInTime}</h6>
       </div>
     </>
   );
