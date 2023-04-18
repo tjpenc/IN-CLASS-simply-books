@@ -1,7 +1,14 @@
 import { PropTypes } from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
+import { deleteSingleAuthor } from '../api/authorData';
 
-export default function AuthorCard({ authorData }) {
+export default function AuthorCard({ authorData, onUpdate }) {
+  const deleteThisAuthor = () => {
+    if (window.confirm(`Delete ${authorData.first_name}?`)) {
+      deleteSingleAuthor(authorData.firebaseKey).then(() => onUpdate());
+    }
+  };
+
   return (
     <>
       <Card style={{ width: '18rem', margin: '10px' }}>
@@ -11,7 +18,7 @@ export default function AuthorCard({ authorData }) {
           <Button variant="primary" className="m-2">VIEW</Button>
           {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
           <Button variant="info">EDIT</Button>
-          <Button variant="danger">DELETE</Button>
+          <Button variant="danger" onClick={deleteThisAuthor}>DELETE</Button>
         </Card.Body>
       </Card>
     </>
@@ -29,6 +36,7 @@ AuthorCard.propTypes = {
     favorite: PropTypes.bool,
     uid: PropTypes.string,
   }),
+  onUpdate: PropTypes.func.isRequired,
 };
 
 AuthorCard.defaultProps = {
