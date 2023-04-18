@@ -1,13 +1,21 @@
 import { PropTypes } from 'prop-types';
+import { Card, Button } from 'react-bootstrap';
 
 export default function AuthorCard({ authorData }) {
   return (
-    <div className="user-info">
-      <h6 style={{ color: 'white' }}>{authorData.email}</h6>
-      <h1>{authorData.first_name}</h1>
-      <h1>{authorData.last_name}</h1>
-      <h1>{authorData.favorite}</h1>
-    </div>
+    <>
+      <Card style={{ width: '18rem', margin: '10px' }}>
+        <Card.Body>
+          <Card.Title>{authorData.first_name} {authorData.last_name}</Card.Title>
+          {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
+          <Button variant="primary" className="m-2">VIEW</Button>
+          {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
+          <Button variant="info">EDIT</Button>
+          <Button variant="danger">DELETE</Button>
+        </Card.Body>
+      </Card>
+    </>
+
   );
 }
 

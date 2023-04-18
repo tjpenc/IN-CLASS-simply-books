@@ -9,7 +9,7 @@ export default function Profile() {
   return (
     <>
       <div>profile here</div>
-      <User userObj={user} />
+      <User user={user} />
       <Signout />
     </>
   );
