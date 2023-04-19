@@ -13,7 +13,7 @@ export default function Authors() {
 
   return (
     <>
-      {authors.map((author) => <AuthorCard authorData={author} onUpdate={getAllAuthors} />)}
+      {authors.map((author) => <AuthorCard key={author.firebaseKey} authorData={author} onUpdate={getAllAuthors} />)}
     </>
   );
 }

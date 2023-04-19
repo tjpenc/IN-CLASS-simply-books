@@ -29,7 +29,7 @@ export default function AuthorCard({ authorData, onUpdate }) {
 AuthorCard.propTypes = {
   authorData: PropTypes.shape({
     email: PropTypes.string,
-    firebaseKey: PropTypes.number,
+    firebaseKey: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     image: PropTypes.string,
