@@ -82,7 +82,7 @@ const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      const authorBooks = Object.values(data).filter((authorId) => authorId === firebaseKey);
+      const authorBooks = [Object.values(data)];
       resolve(authorBooks);
     })
     .catch(reject);

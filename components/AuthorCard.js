@@ -1,5 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
+import Link from 'next/link';
 import { deleteSingleAuthor } from '../api/authorData';
 
 export default function AuthorCard({ authorData, onUpdate }) {
@@ -15,7 +16,9 @@ export default function AuthorCard({ authorData, onUpdate }) {
         <Card.Body>
           <Card.Title>{authorData.first_name} {authorData.last_name}</Card.Title>
           {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
-          <Button variant="primary" className="m-2">VIEW</Button>
+          <Link href={`/author/${authorData.firebaseKey}`} passHref>
+            <Button>VIEW</Button>
+          </Link>
           {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
           <Button variant="info">EDIT</Button>
           <Button variant="danger" onClick={deleteThisAuthor}>DELETE</Button>
