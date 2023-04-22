@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createAuthor } from '../../api/authorData';
+import { createAuthor, updateAuthor } from '../../api/authorData';
 
 const initialState = {
   first_name: '',
@@ -19,6 +19,10 @@ function AuthorForm({ obj }) {
   const { user } = useAuth();
   const router = useRouter();
 
+  useEffect(() => {
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -29,10 +33,15 @@ function AuthorForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { ...formInput, uid: user.uid };
-    createAuthor(payload).then(() => {
-      router.push('/');
-    });
+    if (obj.firebaseKey) {
+      updateAuthor(formInput)
+        .then(() => router.push(`/author/${obj.firebaseKey}`));
+    } else {
+      const payload = { ...formInput, uid: user.uid };
+      createAuthor(payload).then(() => {
+        router.push('/');
+      });
+    }
   };
 
   return (
