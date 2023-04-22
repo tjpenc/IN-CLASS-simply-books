@@ -20,7 +20,9 @@ export default function AuthorCard({ authorData, onUpdate }) {
             <Button>VIEW</Button>
           </Link>
           {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
-          <Button variant="info">EDIT</Button>
+          <Link href={`author/edit/${authorData.firebaseKey}`} passHref>
+            <Button variant="info">EDIT</Button>
+          </Link>
           <Button variant="danger" onClick={deleteThisAuthor}>DELETE</Button>
         </Card.Body>
       </Card>
